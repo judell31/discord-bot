@@ -15,20 +15,28 @@ shadowJar {
     mergeServiceFiles()
 }
 
-group 'Discord'
+
+group 'com.bot.Main'
 version '1.0'
 
 sourceCompatibility = 11
 
 repositories {
+    mavenCentral()
     jcenter()
 }
 
 dependencies {
-    implementation("net.dv8tion:JDA:3.8.3_463")
+    //Implementation
+    implementation("net.dv8tion:JDA:4.2.0_214")
     compile 'com.jagrosh:jda-utilities:2.1'
     compile 'com.jagrosh:jda-utilities:2.1-all'
     implementation 'com.google.guava:guava:26.0-jre'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
+    implementation group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.30'
+
+
+    //Test
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
     jar{
@@ -46,6 +54,5 @@ dependencies {
 
     }
 }
-
 
 mainClassName = 'com.bot.Main'

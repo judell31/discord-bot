@@ -1,11 +1,17 @@
 package com.bot.events;
 
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
+
+import java.io.IOException;
 
 public class EventHandler extends ListenerAdapter{
 
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
-        new Event().event(event);
+        try {
+            new Event().event(event);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
