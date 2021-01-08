@@ -9,7 +9,7 @@ public class EventHandler extends ListenerAdapter{
 
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
         try {
-            new Event().event(event);
+            new Events().event(event);
         } catch (IOException e) {
             e.printStackTrace();
         }

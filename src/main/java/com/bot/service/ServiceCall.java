@@ -1,32 +1,40 @@
 package com.bot.service;
 
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 public class ServiceCall {
 
-    public static String addUser(String connectionUrl) throws IOException {
+    private static void buildJson(){
+    }
 
+    public static String addUser(String connectionUrl) throws IOException {
         URL url = new URL(connectionUrl);
         HttpURLConnection con = (HttpURLConnection)url.openConnection();
         con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type", "application/json; utf-8");
         con.setRequestProperty("Accept", "application/json");
         con.setDoOutput(true);
+
+        // Todo: make a method that builds json
+        JSONObject jsonObject = new JSONObject();
         String jsonInputString = "{\"firstName\": \"Upendra\", \"lastName\": \"Programmer\", \"description\": \"Programmer\"}";
 
         try(OutputStream os = con.getOutputStream()) {
-            byte[] input = jsonInputString.getBytes("utf-8");
+            byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
             os.write(input, 0, input.length);
         }
 
         StringBuilder response = new StringBuilder();
         try(BufferedReader br = new BufferedReader(
-                new InputStreamReader(con.getInputStream(), "utf-8"))) {
+                new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8))) {
             String responseLine = null;
             while ((responseLine = br.readLine()) != null) {
                 response.append(responseLine.trim());
@@ -48,13 +56,13 @@ public class ServiceCall {
         String jsonInputString = "{\"firstName\": \"Upendras\", \"lastName\": \"Programmer\", \"description\": \"Programmer\"}";
 
         try(OutputStream os = con.getOutputStream()) {
-            byte[] input = jsonInputString.getBytes("utf-8");
+            byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
             os.write(input, 0, input.length);
         }
 
         StringBuilder response = new StringBuilder();
         try(BufferedReader br = new BufferedReader(
-                new InputStreamReader(con.getInputStream(), "utf-8"))) {
+                new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8))) {
             String responseLine = null;
             while ((responseLine = br.readLine()) != null) {
                 response.append(responseLine.trim());
@@ -76,7 +84,7 @@ public class ServiceCall {
 
         StringBuilder response = new StringBuilder();
         try(BufferedReader br = new BufferedReader(
-                new InputStreamReader(con.getInputStream(), "utf-8"))) {
+                new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8))) {
             String responseLine = null;
             while ((responseLine = br.readLine()) != null) {
                 response.append(responseLine.trim());
@@ -97,7 +105,7 @@ public class ServiceCall {
 
         StringBuilder response = new StringBuilder();
         try(BufferedReader br = new BufferedReader(
-                new InputStreamReader(con.getInputStream(), "utf-8"))) {
+                new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8))) {
             String responseLine = null;
             while ((responseLine = br.readLine()) != null) {
                 response.append(responseLine.trim());

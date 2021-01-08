@@ -8,10 +8,11 @@ import com.bot.triggers.Triggers;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 
-public class Event {
+public class Events {
 
-    public String event(GuildMessageReceivedEvent event) throws IOException {
+    public static String event(GuildMessageReceivedEvent event) throws IOException {
         String[] args = event.getMessage().getContentRaw().split(" ");
 
         if(args[0].equalsIgnoreCase(Triggers.triggerKeys("hello"))){
