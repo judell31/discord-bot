@@ -1,14 +1,12 @@
 package com.bot.events;
 
 import com.bot.constants.EndpointConstants;
-import com.bot.constants.EnvironmentConstants;
 import com.bot.responses.Response;
 import com.bot.service.ServiceCall;
 import com.bot.triggers.Triggers;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 
 public class Events {
 
@@ -22,7 +20,12 @@ public class Events {
                     .sendMessage(
                             Response.publicRespKey("whats-up")
                     ).queue();
-            event.getChannel().sendMessage(ServiceCall.getUser(EndpointConstants.ENDPOINT + "/get-user/2")).queue();
+            event.getChannel().sendMessage(ServiceCall.addUser(
+                    EndpointConstants.ENDPOINT + "/add-user",
+                    args[1],
+                    args[2],
+                    args[3]
+            )).queue();
 //            ServiceCall.deleteUser(EndpointConstants.ENDPOINT + "/delete/3");
         }
 

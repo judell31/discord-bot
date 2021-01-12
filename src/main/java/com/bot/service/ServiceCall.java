@@ -15,7 +15,7 @@ public class ServiceCall {
     private static void buildJson(){
     }
 
-    public static String addUser(String connectionUrl) throws IOException {
+    public static String addUser(String connectionUrl, String firstName, String lastName, String description) throws IOException {
         URL url = new URL(connectionUrl);
         HttpURLConnection con = (HttpURLConnection)url.openConnection();
         con.setRequestMethod("POST");
@@ -25,7 +25,10 @@ public class ServiceCall {
 
         // Todo: make a method that builds json
         JSONObject jsonObject = new JSONObject();
-        String jsonInputString = "{\"firstName\": \"Upendra\", \"lastName\": \"Programmer\", \"description\": \"Programmer\"}";
+        jsonObject.put("firstName", firstName);
+        jsonObject.put("lastName", lastName);
+        jsonObject.put("description", description);
+        String jsonInputString = jsonObject.toString();
 
         try(OutputStream os = con.getOutputStream()) {
             byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
