@@ -1,5 +1,6 @@
 package com.bot.service;
 
+import com.bot.requests.UserRequest;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -15,7 +16,7 @@ public class ServiceCall {
     private static void buildJson(){
     }
 
-    public static String addUser(String connectionUrl, String firstName, String lastName, String description) throws IOException {
+    public static String addUser(String connectionUrl, UserRequest userRequest) throws IOException {
         URL url = new URL(connectionUrl);
         HttpURLConnection con = (HttpURLConnection)url.openConnection();
         con.setRequestMethod("POST");
@@ -25,9 +26,9 @@ public class ServiceCall {
 
         // Todo: make a method that builds json
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("firstName", firstName);
-        jsonObject.put("lastName", lastName);
-        jsonObject.put("description", description);
+        jsonObject.put("firstName", userRequest.firstName);
+        jsonObject.put("lastName", userRequest.lastName);
+        jsonObject.put("description", userRequest.description);
         String jsonInputString = jsonObject.toString();
 
         try(OutputStream os = con.getOutputStream()) {
@@ -42,7 +43,7 @@ public class ServiceCall {
             while ((responseLine = br.readLine()) != null) {
                 response.append(responseLine.trim());
             }
-            System.out.println(response.toString());
+//            System.out.println(response.toString());
         }
 
         return response.toString();

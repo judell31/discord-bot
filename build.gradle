@@ -16,7 +16,7 @@ shadowJar {
 }
 
 
-group 'com.bot.Main'
+group 'com.bot.SandBoxBot'
 version '1.0'
 
 sourceCompatibility = 11
@@ -43,7 +43,7 @@ dependencies {
 
     jar{
         manifest{
-            attributes 'Main-Class': 'com.bot.Main'
+            attributes 'Main-Class': 'com.bot.SandBoxBot'
         }
         from {
             configurations.compile.collect {
@@ -57,4 +57,4 @@ dependencies {
     }
 }
 
-mainClassName = 'com.bot.Main'
+mainClassName = 'com.bot.SandBoxBot'
