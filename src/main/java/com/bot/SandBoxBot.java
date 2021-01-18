@@ -8,7 +8,7 @@ public class SandBoxBot {
     protected static JDA jda;
 
     public static void main(String[] args) throws Exception{
-        jda = JDABuilder.createDefault("Nzk2MDUxNTkyODg5MjM3NTM0.X_SS0Q.NvvkTnILhQ_zezX-gEOqLjELtTM").build();
+        jda = JDABuilder.createDefault(EnvironmentConstants.TOKEN).build();
         jda.addEventListener(new EventHandler());
     }
 }
